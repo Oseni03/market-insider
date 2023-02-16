@@ -1,0 +1,14 @@
+{% extends "base.html" %} {% load static %} 
+{% block content %} 
+  <img
+  loading="lazy" decoding="async" src="{% if me.account.image %}{{ me.account.image.url }}{% endif %}"
+  class="img-fluid w-100 mb-4" alt="Author Image" />
+  <h1 class="mb-4">{{ me.account.meta_author|title }}</h1>
+  <div class="content">
+    <p>{{ me.account.description }}</p>
+    {% comment %} <blockquote>
+      <p>{{ me.account.quote }}</p>
+    </blockquote> {% endcomment %}
+  </div>
+
+{% endblock %}

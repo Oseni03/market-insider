@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="row">
+    {% for post in posts %}
+      {% if forloop.first %}
+        <div class="col-12 mb-4">
+          <article class="card article-card">
+            <a href="{{ post.get_absolute_url }}">
+              <div class="card-image">
+                <div class="post-info"> <span class="text-uppercase">{{ post.published_at|timesince }}</span>
+                </div>
+                {% comment %} <img loading="lazy" decoding="async" src="{{ post.img_url }}" alt="Post Thumbnail" class="w-100"> {% endcomment %}
+              </div>
+            </a>
+            <div class="card-body px-0 pb-1">
+              <ul class="post-meta mb-2">
+                <li> <a href="{{ post.category.get_absolute_url }}">{{ post.category.name|title }}</a></li>
+              </ul>
+              <h2 class="h1"><a class="post-title" href="{{ post.get_absolute_url }}">{{ post.title|striptags }}</a></h2>
+              <p class="card-text">{{ post.description|striptags }}</p>
+              <div class="content"> <a class="read-more-btn" href="{{ post.get_absolute_url }}">Read Full Article</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      {% else %}
+        <div class="col-md-6 mb-4">
+          <article class="card article-card article-card-sm h-100">
+            <a href="{{ post.get_absolute_url }}">
+              <div class="card-image">
+                <div class="post-info"> <span class="text-uppercase">{{ post.published_at|timesince }}</span>
+                </div>
+                {% comment %} <img loading="lazy" decoding="async" src="{{ post.img_url }}" alt="Post Thumbnail" class="w-100"> {% endcomment %}
+              </div>
+            </a>
+            <div class="card-body px-0 pb-0">
+              <ul class="post-meta mb-2">
+                <li> <a href="{{ post.category.get_absolute_url }}">{{ post.category.name|title }}</a>
+                </li>
+              </ul>
+              <h2><a class="post-title" href="{{ post.get_absolute_url }}">{{ post.title|striptags }}</a></h2>
+              <p class="card-text">{{ post.description|striptags }}</p>
+              <div class="content"> <a class="read-more-btn" href="{{ post.get_absolute_url }}">Read Full Article</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      {% endif %}
+    {% endfor %}
+    {% include "pagination.html" %}
+  </div>
+
+{% endblock %}
