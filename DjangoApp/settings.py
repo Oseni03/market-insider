@@ -81,14 +81,27 @@ WSGI_APPLICATION = "DjangoApp.wsgi.application"
 #     }
 # }
 
+# RAILWAY DATABASE CONFIGURATION 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'railway',
+#         'USER': 'postgres',
+#         'PASSWORD': '67MDGlPTtCinbrbYVdb2',
+#         'HOST': "containers-us-west-57.railway.app",
+#         'POST': "5809"
+#     }
+# }
+
+# SUPABASE DATABASE CONFIGURATION
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'marketinsider',
-        'USER': 'postgres_user',
-        'PASSWORD': 's3krit',
-        'HOST': "",
-        'POST': 5432
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'b99yW7DZOOoWKeLL',
+        'HOST': "db.mppmrfilfloqpzxlajuc.supabase.co",
+        'POST': "5432"
     }
 }
 

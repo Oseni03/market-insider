@@ -35,7 +35,8 @@ class API_SCHEDULAR:
             # iterating over individual posts
             for post in posts:
                 print()
-                # if any post doesn't have information then throw error.
+                # if any post doesn't have information then throw error. 
+                print(post)
                 try:
                     title = post.title
                     link = post.link
@@ -69,6 +70,7 @@ class API_SCHEDULAR:
         print("At run")
         # with ThreadPoolExecutor() as executor:
         #     executor.map(self.get_posts_details, self.categories)
+        print(self.categories)
         for category in self.categories:
             self.get_posts_details(category)
 

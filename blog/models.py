@@ -27,12 +27,10 @@ class Post(models.Model):
         "category", 
         on_delete=models.CASCADE, 
         related_name="posts",
-        db_index=True, 
-        db_tablespace="post_indexes"
-    )
+        db_index=True)
     published_at = models.DateTimeField()
     created_at = models.DateTimeField(auto_now=True)
-    slug = models.SlugField(max_length=250, null=True, blank=True, db_index=True, db_tablespace="post_indexes")
+    slug = models.SlugField(max_length=250, null=True, blank=True, db_index=True)
 
     class Meta:
         ordering = ["-published_at"]
@@ -52,8 +50,8 @@ class Post(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=200)
     rss = models.URLField(null=True, blank=True)
-    slug = models.SlugField(max_length=250, null=True, blank=True, db_index=True, db_tablespace="category_indexes")
-    is_active = models.BooleanField(default=True, db_index=True, db_tablespace="category_indexes")
+    slug = models.SlugField(max_length=250, null=True, blank=True, db_index=True)
+    is_active = models.BooleanField(default=True, db_index=True)
 
     class Meta:
         verbose_name = "Category"
