@@ -10,7 +10,7 @@ SECRET_KEY = "django-insecure-os!_z_q7!fy9i=2zl7rm5ld^eyku@1^(g*%%k77x2c2kz(_6#v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost"]
+ALLOWED_HOSTS = ["localhost", ".vercel.app", ".now.sh"]
 
 
 # Application definition
@@ -144,9 +144,9 @@ STATICFILES_DIRS = [
   BASE_DIR / "media",
 ]
 
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = '/media/'
 
