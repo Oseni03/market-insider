@@ -36,7 +36,6 @@ class API_SCHEDULAR:
             for post in posts:
                 print()
                 # if any post doesn't have information then throw error. 
-                print(post)
                 try:
                     title = post.title
                     link = post.link
@@ -62,15 +61,13 @@ class API_SCHEDULAR:
                     print("Unable to save")
                     print()
 
-            print(posts_details)  # returning the details which is dictionary
         else:
             return None
 
     def run(self):
-        print("At run")
+        print("Running CronJob")
         # with ThreadPoolExecutor() as executor:
         #     executor.map(self.get_posts_details, self.categories)
-        print(self.categories)
         for category in self.categories:
             self.get_posts_details(category)
 
@@ -88,7 +85,11 @@ class Newsletter:
         "subscriber": subscriber,
         "domain": self.current_site.domain,
         "uuid": subscriber.uuid,
-        "posts": Post.objects.prefetch_related("category").all(),
+        "posts": Post.objects.prefetch_related("category").all()[:5],
       })
         # "categories": self.categories,
       subscriber.email_user(self.subject, message)
+    
+    def main(self):
+        with ThreadPoolExecutor() as executor:
+            executor.map(self.send_newsletter, self.subcribers)
