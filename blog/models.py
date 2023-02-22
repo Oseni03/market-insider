@@ -52,6 +52,7 @@ class Category(models.Model):
     rss = models.URLField(null=True, blank=True)
     slug = models.SlugField(max_length=250, null=True, blank=True, db_index=True)
     is_active = models.BooleanField(default=True, db_index=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name = "Category"
