@@ -1,6 +1,14 @@
+{% extends "base.html" %}
 {% load static %}
 
-<div class="success-message">
-  <h2>You have successfully unsubscribed from our newsletter.</h2>
-  <p>We're sorry to see you go. If you have any feedback or need assistance with your account, please <a href="{% url "blog:contact" %}">contact us</a>.</p>
+{% block content %}
+<div class="text-center mt-5">
+  <h1 class="py-5 fw-bold">IT'S NOT THE SAME WITHOUT YOU</h1>
+  
+  <p>You have been successfully unsubscribed from The Market Insider's email newsletter.</p>
+  <p>Miss us already? The feeling is mutual. Follow <a href="{% url "newsletter:resubscribe" uid %}">this link</a> to rejoin</p>
 </div>
+<br>
+<br>
+<br>
+{% endblock %}

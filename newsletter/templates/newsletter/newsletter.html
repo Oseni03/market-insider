@@ -1,9 +1,8 @@
 {% load static %} 
 {% load widget_tweaks %} 
 
-{% include "messages.html" %}
 <h3><a class="post-title post-title-sm">Subscribe to Newsletter</a></h3>
-<form hx-post="{% url "newsletter:subscribe" %}" hx-trigger="click" hx-target="#newsletter_temp" hx-swap="innerHTML" >
+<form action="{% url 'newsletter:subscribe' %}" method="post" >
   {% csrf_token %}
   <div class="form-group">
     {% render_field newsletter_form.email placeholder="Enter your email address" %} 

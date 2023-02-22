@@ -1,15 +1,13 @@
 from datetime import datetime
 from apscheduler.schedulers.background import BackgroundScheduler
 
-from jobs.jobs import API_SCHEDULAR#, Newsletter
+from jobs.jobs import feedsCronJob, newsletterCronJob
 
 
 def start():
-    print("Starting CronJob")
+    print("Starting CronJobs")
     scheduler = BackgroundScheduler()
-    task = API_SCHEDULAR()
-    scheduler.add_job(task.run, "interval", minutes=180)
-    # newsletter = Newsletter()
-    # scheduler.add_job(newsletter.main, "interval", minutes=360)
+    scheduler.add_job(newsletterCronJob, "interval", days=1)
+    scheduler.add_job(feedsCronJob, "interval", hours=1)
     scheduler.start()
-    print("Ending CronJob")
+    print("Ending CronJobs")

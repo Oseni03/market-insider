@@ -1,5 +1,4 @@
-from django.shortcuts import render, redirect
-from django.shortcuts import get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.core.mail import send_mail
@@ -19,11 +18,16 @@ def home(request):
 
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    return render(
-        request,
-        "blog/home.html",
-        {"posts": page_obj, "form": posts, "main_title": "Latest Articles"},
-    )
+    context = {
+        "posts": page_obj, 
+        "form": posts, 
+        "main_title": "Latest Articles"
+    }
+    
+    path = request.get_full_path()
+    if "?title=" in path:
+        context["path"] = path
+    return render(request, "blog/home.html", context)
 
 
 def article(request, category, slug):
@@ -53,27 +57,26 @@ def contact(request):
         subject = request.POST.get("subject")
         message = request.POST.get("message")
         send_mail(subject, from_email=email, recipient_list=[User.objects.first().email], fail_silently=False, message=message)
-    return render(request, "contact.html", {"contact": True})
+        messages.success(request, "Email sent successfully. We'll get back to you soon!")
+    return render(request, "contact.html", {"contact": True, "title": "Contact"})
 
 
 def about(request):
-    return render(request, "about.html")
+    return render(request, "about.html", {"title": "About"})
 
 
 def terms_conditions(request):
-    return render(request, "terms-conditions.html")
+    return render(request, "terms-conditions.html", {"title": "Terms and conditions"})
 
 
 def privacy_policy(request):
-    return render(request, "privacy-policy.html")
+    return render(request, "privacy-policy.html", {"title": "Privacy policy"})
 
 
 @require_GET
 def robots_txt(request):
-    domain = get_current_site(request).domain
     lines = [
         "User-Agent: *",
         "Disallow: /admin/",
-        f"Sitemap: {domain}/sitemap.xml",
     ]
     return HttpResponse("\n".join(lines), content_type="text/plain")

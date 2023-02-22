@@ -1,0 +1,10 @@
+{% load static %}
+{% autoescape off %}
+Hi,
+
+<div class="text-center">
+    Thank you for subscribing to our newsletter, click the link below to verify your email.
+    http://{{ domain }}{% url "newsletter:verify" uidb64=uid token=token %}
+</div>
+
+{% endautoescape %}

@@ -1,6 +1,14 @@
+{% extends "base.html" %}
 {% load static %}
 
-<div class="success-message">
-  <h2>Thank you for subscribing to our newsletter!</h2>
-  <p>You will receive updates and special offers from us in your inbox. If you have any questions or need to update your subscription preferences, please <a href="{% url "blog:contact" %}">contact us</a>.</p>
+{% block content %}
+<div class="text-center mt-5">
+  <h1 class="pt-5 pb-3 fw-bold">Welcome</h1>
+  
+  <p>You have been successfully subscribed to The Market Insider's email newsletter.</p>
+  <p>Verify your email to activate your email</p>
 </div>
+<br>
+<br>
+<br>
+{% endblock %}

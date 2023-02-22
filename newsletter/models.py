@@ -7,11 +7,11 @@ import uuid
 class Newsletter(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
     email = models.EmailField(max_length = 254, unique=True, error_messages={"email": "Email already subscribed!"})
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     
     def email_user(self, subject, message):
         send_mail(
-          subject, message, "Admin@email.com",
-          [self.email], fail_silently=False,
+          subject, message, "marketinsider@zohomail.com",
+          [self.email], fail_silently=True,
         )

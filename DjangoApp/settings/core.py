@@ -2,7 +2,7 @@ from pathlib import Path
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -38,7 +38,6 @@ SITE_ID = 1
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -71,40 +70,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "DjangoApp.wsgi.application"
-
-
-# Database
-
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
-
-# RAILWAY DATABASE CONFIGURATION 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'railway',
-#         'USER': 'postgres',
-#         'PASSWORD': '67MDGlPTtCinbrbYVdb2',
-#         'HOST': "containers-us-west-57.railway.app",
-#         'POST': "5809"
-#     }
-# }
-
-# SUPABASE DATABASE CONFIGURATION
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'b99yW7DZOOoWKeLL',
-        'HOST': "db.mppmrfilfloqpzxlajuc.supabase.co",
-        'POST': "5432"
-    }
-}
 
 
 # Password validation
@@ -147,7 +112,6 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
-# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = '/media/'
 
@@ -160,11 +124,3 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 API_KEY = "1d588b386cc849c6bdd931ec956169dd"
 # API_KEY = "f30ec2d72896462499c31eb735920dd9"
 
-# EMAIL_BACKEND = "django.DjangoApp.mail.backends.console.EmailBackend"
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-EMAIL_HOST = ""
-EMAIL_PORT = 587
-EMAIL_HOST_USER = ""
-EMAIL_HOST_PASSWORD = ""
-EMAIL_USE_TLS = True

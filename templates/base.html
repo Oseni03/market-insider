@@ -10,171 +10,176 @@
 -->
 
 <html lang="en-us">
-
-<head>
-	<meta charset="utf-8">
-	<title>{% if main_title %}{{ main_title|title }} -{% endif %} The Marketing Insider</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-	<meta name="google-site-verification" content="D74mcL-RUOSIzlldN_Rz1EdTjuU8keYMJOFGPXGq9Ew" />
-  <meta name="description" content="{{ me.account.meta_description }}">
-	<meta name="author" content="{{ me.account.meta_author }}">
-	<meta name="keywords" content="{{ me.account.meta_keywords }}">
-  <meta rel="canonical" href="{{ request.path }}"/>
-  <meta rel="home" href="{% url "blog:home" %}"/>
-
-  <meta property="og:url" content="{{ request.path }}" />
-  <meta property="og:title" content="{% if main_title %}{{ main_title|title }} -{% endif %} The Marketing Insider" />
-  <meta name="twitter:card" content="{% if main_title %}{{ main_title|title }} -{% endif %} The Marketing Insider" />
-
-  {% comment %} 
-  <meta property="og:image" content="https://janowski.dev/static/cover.png" />
-  <meta property="og:image:alt" content="A green cover image with Django logo" />
-  <meta name="twitter:image" content="https//example.com/image.png" />
-  <meta property="twitter:image:alt" content="Description of the image" />
-  <meta name="twitter:site" content="@MaciejJanowski" /> 
-  {% endcomment %}
-
-
-	<link rel="shortcut icon" href="{% static "images/favicon.png" %}" type="image/x-icon">
-	<link rel="icon" href="{% static "images/favicon.png" %}" type="image/x-icon">
-  <link rel="apple-touch-icon" href="{% static "images/favicon.png" %}" type="image/x-icon">
-  
-
-	<!-- # Google Fonts -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Neuton:wght@700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-	<!-- # CSS Plugins -->
-	<link rel="stylesheet" href="{% static "plugins/bootstrap/bootstrap.min.css" %}">
-
-	<!-- # Main Style Sheet -->
-	<link rel="stylesheet" href="{% static "css/style.css" %}">
-	<script src="{% static 'js/htmx.min.js' %}" defer></script>
-</head>
-
-
-<body>
-
-<header class="navigation">
-  <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light px-0">
-      <a class="navbar-brand order-1 py-0" href="{% url "blog:home" %}">
-        <img loading="prelaod" decoding="async" class="img-fluid" src="{% static "images/logo.png" %}" alt="Reporter Hugo">
-      </a>
-      <div class="navbar-actions order-3 ml-0 ml-md-4">
-        <button aria-label="navbar toggler" class="navbar-toggler border-0" type="button" data-toggle="collapse"
-          data-target="#navigation"> <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
-      <form action="#!" class="search order-lg-3 order-md-2 order-3 ml-auto">
-        {{ form.form.as_p }}
-        {% comment %} <input id="search-query" name="s" type="search" placeholder="Search..." autocomplete="off"> {% endcomment %}
-      </form>
-      <div class="collapse navbar-collapse text-center order-lg-2 order-4" id="navigation">
-        <ul class="navbar-nav mx-auto mt-3 mt-lg-0">
-          <li class="nav-item"> <a class="nav-link" href="{% url "blog:about" %}">About Me</a>
-          </li>
-          <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" role="button"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Articles
-            </a>
-            <div class="dropdown-menu">
-              
-              {% for category in categories %}
-                <a class="dropdown-item" href="{{ category.get_absolute_url }}">{{ category.name|title }}</a>
-              {% endfor %}
-            </div>
-          </li>
-          <li class="nav-item"> <a class="nav-link" href="{% url 'blog:contact' %}">Contact</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </div>
-</header>
-
-<main>
-  {% if contact is True %}
-    {% block section %}
-    {% endblock %}
-  {% else %}
-    <section class="section">
-      <div class="container">
-        <div class="row no-gutters-lg">
-          <div class="col-12">
-            <h2 class="section-title">
-              {% if main_title %} {{ main_title|title }} {% endif %}
-            </h2>
+    <head>
+    	<meta charset="utf-8">
+    	
+    	{% if main_title %}
+    	<title>{{ main_title|title }} - The Marketing Insider</title>
+    	{% elif title %}
+    	<title>{{ title|title }} - The Marketing Insider</title>
+    	{% else %}
+    	<title>The Marketing Insider</title>
+    	{% endif %}
+    	
+    	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    	<meta name="google-site-verification" content="D74mcL-RUOSIzlldN_Rz1EdTjuU8keYMJOFGPXGq9Ew" />
+        <meta name="description" content="{{ me.account.meta_description }}">
+    	<meta name="author" content="{{ me.account.meta_author }}">
+    	<meta name="keywords" content="{{ me.account.meta_keywords }}">
+        <meta rel="canonical" href="{{ request.path }}"/>
+        <meta rel="home" href="{% url "blog:home" %}"/>
+    
+        <meta property="og:url" content="{{ request.path }}" />
+        <meta property="og:title" content="{% if main_title %}{{ main_title|title }} -{% endif %} The Marketing Insider" />
+        <meta name="twitter:card" content="{% if main_title %}{{ main_title|title }} -{% endif %} The Marketing Insider" />
+        <meta name="twitter:site" content="@Oseni03" /> 
+    
+        {% comment %} 
+        <meta property="og:image" content="https://janowski.dev/static/cover.png" />
+        <meta property="og:image:alt" content="A green cover image with Django logo" />
+        <meta name="twitter:image" content="https//example.com/image.png" />
+        <meta property="twitter:image:alt" content="Description of the image" />
+        {% endcomment %}
+    
+    
+    	<link rel="shortcut icon" href="{% static "images/favicon.png" %}" type="image/x-icon">
+    	<link rel="icon" href="{% static "images/favicon.png" %}" type="image/x-icon">
+        <link rel="apple-touch-icon" href="{% static "images/favicon.png" %}" type="image/x-icon">
+      
+    
+    	<!-- # Google Fonts -->
+    	<link rel="preconnect" href="https://fonts.googleapis.com">
+    	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    	<link href="https://fonts.googleapis.com/css2?family=Neuton:wght@700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+        <!-- # CSS Plugins -->
+    	<link rel="stylesheet" href="{% static "plugins/bootstrap/bootstrap.min.css" %}">
+    
+    	<!-- # Main Style Sheet -->
+    	<link rel="stylesheet" href="{% static "css/style.css" %}">
+    	<script src="{% static 'js/htmx.min.js' %}" defer></script>
+    </head>
+    
+    <body>
+        <header class="navigation">
+          <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light px-0">
+              <a class="navbar-brand order-1 py-0" href="{% url "blog:home" %}">
+                <img loading="prelaod" decoding="async" class="img-fluid" src="{% static "images/logo.png" %}" alt="Reporter Hugo">
+              </a>
+              <div class="navbar-actions order-3 ml-0 ml-md-4">
+                <button aria-label="navbar toggler" class="navbar-toggler border-0" type="button" data-toggle="collapse"
+                  data-target="#navigation"> <span class="navbar-toggler-icon"></span>
+                </button>
+              </div>
+              <form action="#!" class="search order-lg-3 order-md-2 order-3 ml-auto">
+                {{ form.form.title }}
+              </form>
+              <div class="collapse navbar-collapse text-center order-lg-2 order-4" id="navigation">
+                <ul class="navbar-nav mx-auto mt-3 mt-lg-0">
+                  <li class="nav-item"> <a class="nav-link" href="{% url "blog:about" %}">About Me</a>
+                  </li>
+                  <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" role="button"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Articles
+                    </a>
+                    <div class="dropdown-menu">
+                      
+                      {% for category in categories %}
+                        <a class="dropdown-item" href="{{ category.get_absolute_url }}">{{ category.name|title }}</a>
+                      {% endfor %}
+                    </div>
+                  </li>
+                  <li class="nav-item"> <a class="nav-link" href="{% url 'blog:contact' %}">Contact</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
           </div>
-          <div class="col-lg-8 mb-5 mb-lg-0">
-            {% block content %}
+        </header>
+        <div class="text-center">
+            {% include "messages.html" %}
+        </div>
+        
+        <main>
+          {% if contact is True or handler is True %}
+            {% block section %}
             {% endblock %}
-          </div>
-          <div class="col-lg-4">
-            <div class="widget-blocks">
-              <div class="row">
-                <div class="col-lg-12 col-md-6">
-                  <div class="widget">
-                    <h2 class="section-title mb-3">Newsletter</h2>
-                    <div class="widget-body">
-                      <div class="widget-list">
-                        <article class="card mb-4">
-                          <div class="card-body px-0 pb-1" id="newsletter_temp">
-                            {% include "newsletter/newsletter.html" %}
+          {% else %}
+            <section class="section">
+              <div class="container">
+                <div class="row no-gutters-lg">
+                  <div class="col-12">
+                    <h2 class="section-title">
+                      {% if main_title %} {{ main_title|title }} {% endif %}
+                    </h2>
+                  </div>
+                  <div class="col-lg-8 mb-5 mb-lg-0">
+                    {% block content %}
+                    {% endblock %}
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="widget-blocks">
+                      <div class="row">
+                        <div class="col-lg-12 col-md-6">
+                          <div class="widget">
+                            <h2 class="section-title mb-3">Newsletter</h2>
+                            <div class="widget-body">
+                              <div class="widget-list">
+                                <article class="card mb-4">
+                                  <div class="card-body px-0 pb-1" id="newsletter_temp">
+                                    {% include "newsletter/newsletter.html" %}
+                                  </div>
+                                </article>
+                              </div>
+                            </div>
                           </div>
-                        </article>
+                        </div>
+                        <div class="col-lg-12 col-md-6">
+                          <div class="widget">
+                            <h2 class="section-title mb-3">Categories</h2>
+                            <div class="widget-body">
+                              <ul class="widget-list">
+                                {% for category in categories %}
+                                  <li><a href="{{ category.get_absolute_url }}">{{ category.name|title }}<span class="ml-auto">({{ category.posts.count }})</span></a></li>
+                                </li>
+                                {% endfor %}
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-12 col-md-6">
-                  <div class="widget">
-                    <h2 class="section-title mb-3">Categories</h2>
-                    <div class="widget-body">
-                      <ul class="widget-list">
-                        {% for category in categories %}
-                          <li><a href="{{ category.get_absolute_url }}">{{ category.name|title }}<span class="ml-auto">({{ category.posts.count }})</span></a></li>
-                        </li>
-                        {% endfor %}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+              </div>
+            </section>
+          {% endif %}
+        </main>
+        
+        <footer class="bg-dark mt-5">
+          <div class="container section">
+            <div class="row">
+              <div class="col-lg-10 mx-auto text-center">
+                <a class="d-inline-block mb-4 pb-2" href="{% url "blog:home" %}">
+                  <img loading="prelaod" decoding="async" class="img-fluid" src="{% static "images/logo-white.png" %}" alt="Reporter Hugo">
+                </a>
+                <ul class="p-0 d-flex navbar-footer mb-0 list-unstyled">
+                  <li class="nav-item my-0"> <a class="nav-link" href="{% url "blog:about" %}">About</a></li>
+                  <li class="nav-item my-0"> <a class="nav-link" href="{% url "blog:privacy-policy" %}">Privacy Policy</a></li>
+                  <li class="nav-item my-0"> <a class="nav-link" href="{% url "blog:terms-conditions" %}">Terms Conditions</a></li>
+                </ul>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-  {% endif %}
-</main>
-
-<footer class="bg-dark mt-5">
-  <div class="container section">
-    <div class="row">
-      <div class="col-lg-10 mx-auto text-center">
-        <a class="d-inline-block mb-4 pb-2" href="{% url "blog:home" %}">
-          <img loading="prelaod" decoding="async" class="img-fluid" src="{% static "images/logo-white.png" %}" alt="Reporter Hugo">
-        </a>
-        <ul class="p-0 d-flex navbar-footer mb-0 list-unstyled">
-          <li class="nav-item my-0"> <a class="nav-link" href="{% url "blog:about" %}">About</a></li>
-          <li class="nav-item my-0"> <a class="nav-link" href="{% url "blog:privacy-policy" %}">Privacy Policy</a></li>
-          <li class="nav-item my-0"> <a class="nav-link" href="{% url "blog:terms-conditions" %}">Terms Conditions</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="copyright bg-dark content">Designed &amp; Developed By <a href="https://themefisher.com/">Themefisher</a></div>
-</footer>
-
-
-<!-- # JS Plugins -->
-<script src="{% static "plugins/jquery/jquery.min.js" %}"></script>
-<script src="{% static "plugins/bootstrap/bootstrap.min.js" %}"></script>
-
-<!-- Main Script -->
-<script src="{% static "js/script.js" %}"></script>
-
-</body>
+          <div class="copyright bg-dark content">Designed &amp; Developed By <a href="https://themefisher.com/">Themefisher</a></div>
+        </footer>
+        
+        <!-- # JS Plugins -->
+        <script src="{% static "plugins/jquery/jquery.min.js" %}"></script>
+        <script src="{% static "plugins/bootstrap/bootstrap.min.js" %}"></script>
+        
+        <!-- Main Script -->
+        <script src="{% static "js/script.js" %}"></script>
+    </body>
 </html>

@@ -6,12 +6,15 @@ from django.urls import reverse
 class BlogSitemap(Sitemap):
     changefreq = "hourly"
     priority = 0.9
-
+    
     def items(self):
         return Post.objects.all()
 
     def lastmod(self, obj):
-        return obj.published_at
+        return obj.published_at 
+    
+    def location(self, obj):
+        return obj.get_absolute_url()
 
 
 class StaticViewSitemap(Sitemap):
@@ -22,4 +25,4 @@ class StaticViewSitemap(Sitemap):
         return ["about", "contact", "terms-conditions", "privacy-policy"]
 
     def location(self, item):
-        return reverse(item)
+        return reverse(f"blog:{item}")
