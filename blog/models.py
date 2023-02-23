@@ -10,7 +10,7 @@ class Account(models.Model):
     description = models.TextField(blank=True, null=True)
     image = models.ImageField(blank=True, upload_to="profile/")
     tel = PhoneNumberField(max_length=20, blank=True, null=True)
-    contact_intro = models.CharField(max_length=200, blank=True, null=True)
+    contact_intro = models.TextField(blank=True, null=True)
     address = models.CharField(max_length=250, blank=True, null=True)
     meta_keywords = models.CharField(max_length=255, blank=True, null=True)
     meta_description = models.TextField(null=True, blank=True)
