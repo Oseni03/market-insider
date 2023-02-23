@@ -42,9 +42,9 @@
         {% endcomment %}
     
     
-    	<link rel="shortcut icon" href="{% static "images/favicon.png" %}" type="image/x-icon">
-    	<link rel="icon" href="{% static "images/favicon.png" %}" type="image/x-icon">
-        <link rel="apple-touch-icon" href="{% static "images/favicon.png" %}" type="image/x-icon">
+    	<link rel="shortcut icon" href="{% static "images/logo.ico" %}" type="image/x-icon">
+    	<link rel="icon" href="{% static "images/logo.ico" %}" type="image/x-icon">
+        <link rel="apple-touch-icon" href="{% static "images/logo.ico" %}" type="image/x-icon">
       
     
     	<!-- # Google Fonts -->
@@ -65,7 +65,7 @@
           <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light px-0">
               <a class="navbar-brand order-1 py-0" href="{% url "blog:home" %}">
-                <img loading="prelaod" decoding="async" class="img-fluid" src="{% static "images/logo.png" %}" alt="Reporter Hugo">
+                <h1 class="fw-bold">Market Insider</h1>
               </a>
               <div class="navbar-actions order-3 ml-0 ml-md-4">
                 <button aria-label="navbar toggler" class="navbar-toggler border-0" type="button" data-toggle="collapse"
@@ -162,7 +162,7 @@
             <div class="row">
               <div class="col-lg-10 mx-auto text-center">
                 <a class="d-inline-block mb-4 pb-2" href="{% url "blog:home" %}">
-                  <img loading="prelaod" decoding="async" class="img-fluid" src="{% static "images/logo-white.png" %}" alt="Reporter Hugo">
+                  <h1 class="fw-bold text-light">Market Insider</h1>
                 </a>
                 <ul class="p-0 d-flex navbar-footer mb-0 list-unstyled">
                   <li class="nav-item my-0"> <a class="nav-link" href="{% url "blog:about" %}">About</a></li>
