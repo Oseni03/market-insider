@@ -29,7 +29,7 @@ class Post(models.Model):
         related_name="posts",
         db_index=True)
     published_at = models.DateTimeField()
-    created_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(max_length=250, null=True, blank=True, db_index=True)
 
     class Meta:
@@ -74,3 +74,19 @@ class Category(models.Model):
         if not self.slug:
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
+
+
+class ContactMessage(models.Model):
+    name = models.CharField(max_length=200)
+    email = models.EmailField(max_length = 255)
+    subject = models.CharField(max_length=200)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name = "Contact Message"
+        verbose_name_plural = "Contact Messages"
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return str(self.name)

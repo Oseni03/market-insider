@@ -18,8 +18,8 @@
               <ul class="post-meta mb-2">
                 <li> <a href="{{ post.category.get_absolute_url }}">{{ post.category.name|title }}</a></li>
               </ul>
-              <h2 class="h1"><a class="post-title" href="{{ post.get_absolute_url }}">{{ post.title|striptags }}</a></h2>
-              <p class="card-text">{{ post.description|striptags }}</p>
+              <h2 class="h1"><a class="post-title" href="{{ post.get_absolute_url }}">{{ post.title|safe }}</a></h2>
+              <p class="card-text">{{ post.description|safe }}</p>
               <div class="content"> <a class="read-more-btn" href="{{ post.get_absolute_url }}">Read Full Article</a>
               </div>
             </div>
@@ -40,8 +40,8 @@
                 <li> <a href="{{ post.category.get_absolute_url }}">{{ post.category.name|title }}</a>
                 </li>
               </ul>
-              <h2><a class="post-title" href="{{ post.get_absolute_url }}">{{ post.title|striptags }}</a></h2>
-              <p class="card-text">{{ post.description|striptags }}</p>
+              <h2><a class="post-title" href="{{ post.get_absolute_url }}">{{ post.title|safe }}</a></h2>
+              <p class="card-text">{{ post.description|safe }}</p>
               <div class="content"> <a class="read-more-btn" href="{{ post.get_absolute_url }}">Read Full Article</a>
               </div>
             </div>

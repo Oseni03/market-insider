@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = "django-insecure-os!_z_q7!fy9i=2zl7rm5ld^eyku@1^(g*%%k77x2c2kz(_6#v"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", ".vercel.app", ".now.sh"]
 
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
 SITE_ID = 1
 
 MIDDLEWARE = [
+    "django.middleware.common.BrokenLinkEmailsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -124,3 +125,58 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 API_KEY = "1d588b386cc849c6bdd931ec956169dd"
 # API_KEY = "f30ec2d72896462499c31eb735920dd9"
 
+ADMINS = ["marketinsider@zohomail.com", "pysite.03@gmail.com"]
+MANAGERS = ["marketinsider@zohomail.com", "pysite.03@gmail.com"]
+
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'verbose': {
+#             'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+#             'style': '{',
+#         },
+#         'simple': {
+#             'format': '{levelname} {message}',
+#             'style': '{',
+#         },
+#     },
+#     'filters': {
+#         'special': {
+#             '()': 'project.logging.SpecialFilter',
+#             'foo': 'bar',
+#         },
+#         'require_debug_true': {
+#             '()': 'django.utils.log.RequireDebugTrue',
+#         },
+#     },
+#     'handlers': {
+#         'console': {
+#             'level': 'INFO',
+#             'filters': ['require_debug_true'],
+#             'class': 'logging.StreamHandler',
+#             'formatter': 'simple'
+#         },
+#         'mail_admins': {
+#             'level': 'ERROR',
+#             'class': 'django.utils.log.AdminEmailHandler',
+#             'filters': ['special']
+#         }
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['console'],
+#             'propagate': True,
+#         },
+#         'django.request': {
+#             'handlers': ['mail_admins'],
+#             'level': 'ERROR',
+#             'propagate': False,
+#         },
+#         'myproject.custom': {
+#             'handlers': ['console', 'mail_admins'],
+#             'level': 'INFO',
+#             'filters': ['special']
+#         }
+#     }
+# }

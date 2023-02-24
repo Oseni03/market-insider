@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.views.decorators.http import require_GET
 from django.contrib.sites.shortcuts import get_current_site
 
-from .models import Post, Category
+from .models import Post, Category, ContactMessage
 from .filters import PostFilter
 
 # Create your views here.
@@ -56,7 +56,13 @@ def contact(request):
         email = request.POST.get("email")
         subject = request.POST.get("subject")
         message = request.POST.get("message")
-        send_mail(subject, from_email=email, recipient_list=[User.objects.first().email], fail_silently=False, message=message)
+        try:
+            send_mail(subject, from_email=email, recipient_list=[User.objects.first().email], fail_silently=False, message=message)
+        except:
+            ContactMessage.objects.create(
+                name=name, email=email, 
+                subject=subject, 
+                message=message)
         messages.success(request, "Email sent successfully. We'll get back to you soon!")
     return render(request, "contact.html", {"contact": True, "title": "Contact"})
 

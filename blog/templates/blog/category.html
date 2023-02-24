@@ -16,8 +16,8 @@
 					<ul class="post-meta mb-2">
 						<li> <span>{{ post.category.name }}</span></li>
 					</ul>
-					<h2><a class="post-title" href="{{ post.get_absolute_url }}">{{ post.title|striptags }}</a></h2>
-					<p class="card-text">{{ post.description|striptags }}</p>
+					<h2><a class="post-title" href="{{ post.get_absolute_url }}">{{ post.title|safe }}</a></h2>
+					<p class="card-text">{{ post.description|safe }}</p>
 					<div class="content"> <a class="read-more-btn" href="{{ post.get_absolute_url }}">Read Full Article</a>
 					</div>
 				</div>
