@@ -8,6 +8,6 @@ def start():
     print("Starting CronJobs")
     scheduler = BackgroundScheduler()
     scheduler.add_job(newsletterCronJob, "interval", days=1)
-    scheduler.add_job(feedsCronJob, "interval", hours=1)
+    scheduler.add_job(feedsCronJob, "interval", minutes=45)
     scheduler.start()
     print("Ending CronJobs")
