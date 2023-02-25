@@ -1,7 +1,7 @@
 {% load static %} 
 {% load widget_tweaks %} 
 
-<h3><a class="post-title post-title-sm">Subscribe to Newsletter</a></h3>
+<h3><span class="post-title post-title-sm">Subscribe to Newsletter</span></h3>
 <form action="{% url 'newsletter:subscribe' %}" method="post" >
   {% csrf_token %}
   <div class="form-group">

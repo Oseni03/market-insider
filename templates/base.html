@@ -57,7 +57,6 @@
     
     	<!-- # Main Style Sheet -->
     	<link rel="stylesheet" href="{% static "css/style.css" %}">
-    	<script src="{% static 'js/htmx.min.js' %}" defer></script>
     </head>
     
     <body>
@@ -73,7 +72,8 @@
                 </button>
               </div>
               <form action="#!" class="search order-lg-3 order-md-2 order-3 ml-auto">
-                {{ form.form.title }}
+                {% render_field form.form.title placeholder="Search" %}
+                {# {{ form.form.title }} #}
               </form>
               <div class="collapse navbar-collapse text-center order-lg-2 order-4" id="navigation">
                 <ul class="navbar-nav mx-auto mt-3 mt-lg-0">
@@ -175,10 +175,11 @@
         </footer>
         
         <!-- # JS Plugins -->
-        <script src="{% static "plugins/jquery/jquery.min.js" %}"></script>
-        <script src="{% static "plugins/bootstrap/bootstrap.min.js" %}"></script>
+        <script src="{% static "plugins/jquery/jquery.min.js" %}" defer async></script>
+        <script src="{% static "plugins/bootstrap/bootstrap.min.js" %}" defer async></script>
         
         <!-- Main Script -->
-        <script src="{% static "js/script.js" %}"></script>
+        <script src="{% static "js/script.js" %}" defer async></script>
+        <script src="{% static 'js/htmx.min.js' %}" defer async></script>
     </body>
 </html>

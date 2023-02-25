@@ -125,7 +125,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 API_KEY = "1d588b386cc849c6bdd931ec956169dd"
 # API_KEY = "f30ec2d72896462499c31eb735920dd9"
 
-ADMINS = ["marketinsider@zohomail.com", "pysite.03@gmail.com"]
+ADMINS = [
+    ("Oseni", "marketinsider@zohomail.com"), 
+    ("Oseni03", "pysite.03@gmail.com")
+]
 MANAGERS = ["marketinsider@zohomail.com", "pysite.03@gmail.com"]
 
 # LOGGING = {

@@ -12,7 +12,7 @@ from .filters import PostFilter
 
 # Create your views here.
 def home(request):
-    posts = Post.objects.all().prefetch_related("category")
+    posts = Post.objects.prefetch_related("category").all()
     posts = PostFilter(request.GET, queryset=posts)
     paginator = Paginator(posts.qs, 11)  # Show 25 contacts per page.
 
