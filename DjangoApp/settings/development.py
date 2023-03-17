@@ -15,11 +15,10 @@ if DEBUG:
 
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    
     EMAIL_HOST = "smtp.zoho.com"
-    EMAIL_PORT = 587
     EMAIL_HOST_USER = "marketinsider@zohomail.com"
     EMAIL_HOST_PASSWORD = "bRUNbdf8NNmh"
+    EMAIL_PORT = 587
     EMAIL_USE_TLS = True 
     
     # SUPABASE DATABASE CONFIGURATION
